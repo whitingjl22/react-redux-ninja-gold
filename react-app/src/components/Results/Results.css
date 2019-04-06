@@ -1,0 +1,25 @@
+.flex-container {
+  display: flex;
+}
+
+.results-container {
+  min-height: 110px;
+  width: 1070px;
+  border-style: solid;
+  margin-left: 30px;
+  margin-bottom: 5px;
+}
+
+.results-container h4 {
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 0px;
+}
+
+/* .count-container hr {
+  margin-top: -15px;
+}
+
+.count-container h3 {
+  margin-left: 5px;
+} */

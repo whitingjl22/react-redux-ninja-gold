@@ -1,0 +1,29 @@
+.flex-container {
+  display: flex;
+}
+
+.action-container {
+  min-height: 110px;
+  width: 1070px;
+  border-style: solid;
+  margin-left: 30px;
+  margin-bottom: 5px;
+}
+
+.action-container h4 {
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 0px;
+}
+
+.action-container li {
+  list-style-type: none;
+}
+
+/* .count-container hr {
+  margin-top: -15px;
+} */
+
+/* .count-container h3 {
+  margin-left: 5px;
+} */
