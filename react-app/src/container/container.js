@@ -4,7 +4,7 @@ import Action from "../components/Action/Action"
 import Results from "../components/Results/Results"
 import { connect } from "react-redux"
 import axios from "axios"
-import { updateResultsListStateAction } from "../redux"
+import { updateResultsListStateAction, updateCumulativeGoldCountStateAction } from "../redux"
 
 class Container extends React.Component {
   constructor(props) {
@@ -13,16 +13,32 @@ class Container extends React.Component {
   }
 
   componentDidMount() {
-    this.getResults()
+    this.getResultsList()
+    this.getCumulativeGoldCount()
   }
 
-  getResults = () => {
+  // GET Results List
+  getResultsList = () => {
     axios
       .get("http://localhost:4000/api/results")
       .then((serverResultsGetResponse) => {
         console.log("serverResultsGetResponse", serverResultsGetResponse.data)
 
         this.props.updateResultsListState(serverResultsGetResponse.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  // GET Cumulative Gold Count
+  getCumulativeGoldCount = () => {
+    axios
+      .get("http://localhost:4000/api/gold")
+      .then((serverGoldGetResponse) => {
+        console.log("serverGoldGetResponse", serverGoldGetResponse.data)
+
+        this.props.updateCumulativeGoldCountState(serverGoldGetResponse.data)
       })
       .catch((error) => {
         console.log(error)
@@ -51,7 +67,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  updateResultsListState: (data) => dispatch(updateResultsListStateAction(data))
+  updateResultsListState: (data) => dispatch(updateResultsListStateAction(data)),
+  updateCumulativeGoldCountState: (data) => dispatch(updateCumulativeGoldCountStateAction(data))
 })
 
 export default connect(

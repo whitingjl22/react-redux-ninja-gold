@@ -5,6 +5,10 @@ export const updateResultsListStateAction = (data) => ({
   type: "UPDATE_RESULTS_LIST_STATE",
   payload: data
 })
+export const updateCumulativeGoldCountStateAction = (data) => ({
+  type: "UPDATE_CUMULATIVE_GOLD_COUNT_STATE",
+  payload: data
+})
 
 ///REDUCERS
 export const reducers = (state = initialState, action) => {
@@ -16,6 +20,14 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         resultsList: action.payload
+      }
+    case "UPDATE_CUMULATIVE_GOLD_COUNT_STATE":
+      console.log(" -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --")
+      console.log(" -- REDUCER -- UPDATE_CUMULATIVE_GOLD_COUNT_STATE | state: ", state)
+      console.log(" -- REDUCER -- UPDATE_CUMULATIVE_GOLD_COUNT_STATE | action", action)
+      return {
+        ...state,
+        cumulativeGoldCount: action.payload[0].cumulativeGoldCount
       }
 
     default:

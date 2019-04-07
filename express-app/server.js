@@ -23,6 +23,18 @@ app.get("/api/results", (request, response) => {
     })
 })
 
+// GET Gold
+app.get("/api/gold", (request, response) => {
+  axios
+    .get("http://5c992ab94236560014393239.mockapi.io/gold")
+    .then((mockGoldGetResponse) => {
+      return response.json(mockGoldGetResponse.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+})
+
 app.get("*", (request, response) => {
   response.sendFile(path.resolve(__dirname + "./../react-app/build/index.html"))
 })
