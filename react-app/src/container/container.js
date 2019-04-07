@@ -62,8 +62,8 @@ class Container extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
-  cumulativeGoldCount: state.cumulativeGoldCount,
-  resultsList: state.resultsList
+  // cumulativeGoldCount: state.cumulativeGoldCount,
+  // resultsList: state.resultsList
 })
 
 const mapDispatchToProps = (dispatch) => ({

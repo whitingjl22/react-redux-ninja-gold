@@ -39,7 +39,7 @@ class Results extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  cumulativeGoldCount: state.cumulativeGoldCount,
+  // cumulativeGoldCount: state.cumulativeGoldCount,
   resultsList: state.resultsList
 })
 
