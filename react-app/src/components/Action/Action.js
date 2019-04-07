@@ -1,5 +1,6 @@
 import React from "react"
 import "./Action.css"
+import { connect } from "react-redux"
 
 class Action extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class Action extends React.Component {
     this.state = {}
   }
   render() {
+    console.log("ACTION PAGE PROPS:", this.props)
     return (
       <div className="action-container">
         <h4>Component 1</h4>
@@ -16,7 +18,7 @@ class Action extends React.Component {
             <h3>Farm</h3>
             <p>Earns 2 - 5 Gold</p>
             <br />
-            <button>
+            <button onClick={() => this.props.randomlyGenerateGoldFunc(2, 5)}>
               <h4>Farm!</h4>
             </button>
           </div>
@@ -24,7 +26,7 @@ class Action extends React.Component {
             <h3>Cave</h3>
             <p>Earns 5 - 10 Gold</p>
             <br />
-            <button>
+            <button onClick={() => this.props.randomlyGenerateGoldFunc(5, 10)}>
               <h4>Cave!</h4>
             </button>
           </div>
@@ -33,7 +35,7 @@ class Action extends React.Component {
             <p>
               Earns up to or Lose up to 100 <br /> Gold
             </p>
-            <button>
+            <button onClick={() => this.props.randomlyGenerateGoldFunc(-100, 100)}>
               <h4>Casino!</h4>
             </button>
           </div>
@@ -41,7 +43,7 @@ class Action extends React.Component {
             <h3>House</h3>
             <p>Earns 7 - 15 Gold</p>
             <br />
-            <button>
+            <button onClick={() => this.props.randomlyGenerateGoldFunc(7, 15)}>
               <h4>Hotel!</h4>
             </button>
           </div>
@@ -51,4 +53,16 @@ class Action extends React.Component {
   }
 }
 
-export default Action
+const mapStateToProps = (state) => ({
+  cumulativeGoldCount: state.cumulativeGoldCount,
+  resultsList: state.resultsList
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  // Not Needed For This Component
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Action)

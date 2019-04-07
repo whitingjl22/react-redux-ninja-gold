@@ -1,5 +1,6 @@
 import React from "react"
 import "./Results.css"
+import { connect } from "react-redux"
 
 class Results extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class Results extends React.Component {
     this.state = {}
   }
   render() {
+    console.log("RESULTS PAGE PROPS:", this.props)
     return (
       <div className="flex-container">
         <div>
@@ -14,9 +16,20 @@ class Results extends React.Component {
             <h4>Component 2</h4>
             <hr />
             <ul>
-              <li>You've earned 5 gold at the Farm</li>
-              <li>You've lost 25 gold at the Caino</li>
-              <li>You've earned 7 gold at the Cave</li>
+              {this.props.resultsList.map((result, index) => {
+                if (result.type === "Casino") {
+                  return (
+                    <li key={index}>
+                      You've lost {result.goldGenerated} gold at the {result.type}
+                    </li>
+                  )
+                } else
+                  return (
+                    <li key={index}>
+                      You've earned {result.goldGenerated} gold at the {result.type}
+                    </li>
+                  )
+              })}
             </ul>
           </div>
         </div>
@@ -25,4 +38,16 @@ class Results extends React.Component {
   }
 }
 
-export default Results
+const mapStateToProps = (state) => ({
+  cumulativeGoldCount: state.cumulativeGoldCount,
+  resultsList: state.resultsList
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  // Not Needed For This Component
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Results)
