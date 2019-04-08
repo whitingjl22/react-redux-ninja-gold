@@ -35,7 +35,7 @@ export const reducers = (state = initialState, action) => {
 // Initial State
 // Minimal representation of the data in the app
 const initialState = {
-  cumulativeGoldCount: 0,
+  cumulativeGoldCount: null,
   resultsList: []
 }
 

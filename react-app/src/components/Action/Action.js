@@ -18,7 +18,7 @@ class Action extends React.Component {
             <h3>Farm</h3>
             <p>Earns 2 - 5 Gold</p>
             <br />
-            <button onClick={() => this.props.randomlyGenerateGoldFunc("Farm")}>
+            <button onClick={() => this.props.randomlyGenerateGoldFunc(2, 5, "Farm")}>
               <h4>Farm!</h4>
             </button>
           </div>
@@ -26,7 +26,7 @@ class Action extends React.Component {
             <h3>Cave</h3>
             <p>Earns 5 - 10 Gold</p>
             <br />
-            <button onClick={() => this.props.randomlyGenerateGoldFunc("Cave")}>
+            <button onClick={() => this.props.randomlyGenerateGoldFunc(5, 10, "Cave")}>
               <h4>Cave!</h4>
             </button>
           </div>
@@ -35,7 +35,7 @@ class Action extends React.Component {
             <p>
               Earns up to or Lose up to 100 <br /> Gold
             </p>
-            <button onClick={() => this.props.randomlyGenerateGoldFunc("Casino")}>
+            <button onClick={() => this.props.randomlyGenerateGoldFunc(-100, 100, "Casino")}>
               <h4>Casino!</h4>
             </button>
           </div>
@@ -43,7 +43,7 @@ class Action extends React.Component {
             <h3>House</h3>
             <p>Earns 7 - 15 Gold</p>
             <br />
-            <button onClick={() => this.props.randomlyGenerateGoldFunc("House")}>
+            <button onClick={() => this.props.randomlyGenerateGoldFunc(7, 15, "House")}>
               <h4>House!</h4>
             </button>
           </div>

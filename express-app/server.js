@@ -31,8 +31,20 @@ app.put("/api/results", (request, response) => {
     .get("http://5c992ab94236560014393239.mockapi.io/results")
     .then((mockResultsGetResponse) => {
       console.log("Get1 reponse", mockResultsGetResponse.data)
+      let result = mockResultsGetResponse.data[0]
+
+      // result.cumulativeGoldCount
+      console.log("result", result)
+
       // return response.json(mockResultsGetResponse.data)
+      axios
+        .put("http://5c992ab94236560014393239.mockapi.io/results/1", {
+          cumulativeGoldCount: result.cumulativeGoldCount + 100,
+          resultsList: result.resultsList.push({ id: 234, type: "", goldGenerated: 4 })
+        })
+        .then((mockResultsPutResponse) => {})
     })
+
     .catch((error) => {
       console.log(error)
     })
