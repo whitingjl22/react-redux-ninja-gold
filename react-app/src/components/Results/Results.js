@@ -17,10 +17,16 @@ class Results extends React.Component {
             <hr />
             <ul>
               {this.props.resultsList.map((result, index) => {
-                if (result.type === "Casino") {
+                if (result.type === "Casino" && result.goldGenerated < 0) {
                   return (
                     <li key={index}>
                       You've lost {result.goldGenerated} gold at the {result.type}
+                    </li>
+                  )
+                } else if (result.type === "Casino" && result.goldGenerated > 0) {
+                  return (
+                    <li key={index}>
+                      You've earned {result.goldGenerated} gold at the {result.type}
                     </li>
                   )
                 } else

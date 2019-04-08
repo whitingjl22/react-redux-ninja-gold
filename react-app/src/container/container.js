@@ -4,7 +4,7 @@ import Action from "../components/Action/Action"
 import Results from "../components/Results/Results"
 import { connect } from "react-redux"
 import axios from "axios"
-import { updateResultsListStateAction, updateCumulativeGoldCountStateAction } from "../redux"
+import { getResultsStateAction } from "../redux"
 
 class Container extends React.Component {
   constructor(props) {
@@ -13,42 +13,52 @@ class Container extends React.Component {
   }
 
   componentDidMount() {
-    this.getResultsList()
-    this.getCumulativeGoldCount()
+    this.getResults()
   }
 
   // GET Results List
-  getResultsList = () => {
+  getResults = () => {
     axios
       .get("http://localhost:4000/api/results")
       .then((serverResultsGetResponse) => {
         console.log("serverResultsGetResponse", serverResultsGetResponse.data)
 
-        this.props.updateResultsListState(serverResultsGetResponse.data)
+        this.props.getResultsState(serverResultsGetResponse.data)
       })
       .catch((error) => {
         console.log(error)
       })
   }
 
-  // GET Cumulative Gold Count
-  getCumulativeGoldCount = () => {
-    axios
-      .get("http://localhost:4000/api/gold")
-      .then((serverGoldGetResponse) => {
-        console.log("serverGoldGetResponse", serverGoldGetResponse.data)
+  randomlyGenerateGold = (type) => {
+    // const goldGenerated = Math.floor(Math.random() * (max - min + 1)) + min
+    // let cumulativeGoldCount =
+    let goldGenerated = null
 
-        this.props.updateCumulativeGoldCountState(serverGoldGetResponse.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+    if (type === "Farm") {
+      goldGenerated = Math.floor(Math.random() * (5 - 2 + 1)) + 2
+    } else if (type === "Cave") {
+      goldGenerated = Math.floor(Math.random() * (10 - 5 + 1)) + 5
+    } else if (type === "Casino") {
+      goldGenerated = Math.floor(Math.random() * (100 - -100 + 1)) + -100
+    } else if (type === "House") {
+      goldGenerated = Math.floor(Math.random() * (15 - 7 + 1)) + 7
+    }
 
-  randomlyGenerateGold = (min, max) => {
-    const goldGenerated = Math.floor(Math.random() * (max - min + 1)) + min
+    // cumulativeGoldCount += goldGenerated
 
+    // console.log("cumulativeGoldCount", cumulativeGoldCount)
     console.log("goldGenerated", goldGenerated)
+
+    // axios.put("http://localhost:4000/api/results", {})
+    // .then((serverResultsPutResponse) => {
+    //   console.log("TEST_serverResultsPutResponse", serverResultsPutResponse.data)
+
+    //   // this.props.updateCumulativeGoldCountState(serverGoldGetResponse.data)
+    // })
+    // .catch((error) => {
+    //   console.log(error)
+    // })
   }
 
   render() {
@@ -62,13 +72,12 @@ class Container extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
-  // cumulativeGoldCount: state.cumulativeGoldCount,
+  cumulativeGoldCount: state.cumulativeGoldCount
   // resultsList: state.resultsList
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  updateResultsListState: (data) => dispatch(updateResultsListStateAction(data)),
-  updateCumulativeGoldCountState: (data) => dispatch(updateCumulativeGoldCountStateAction(data))
+  getResultsState: (data) => dispatch(getResultsStateAction(data))
 })
 
 export default connect(

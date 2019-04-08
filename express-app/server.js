@@ -23,12 +23,15 @@ app.get("/api/results", (request, response) => {
     })
 })
 
-// GET Gold
-app.get("/api/gold", (request, response) => {
+// PUT Results
+app.put("/api/results", (request, response) => {
+  console.log("PUT Request", request.body)
+
   axios
-    .get("http://5c992ab94236560014393239.mockapi.io/gold")
-    .then((mockGoldGetResponse) => {
-      return response.json(mockGoldGetResponse.data)
+    .get("http://5c992ab94236560014393239.mockapi.io/results")
+    .then((mockResultsGetResponse) => {
+      console.log("Get1 reponse", mockResultsGetResponse.data)
+      // return response.json(mockResultsGetResponse.data)
     })
     .catch((error) => {
       console.log(error)
