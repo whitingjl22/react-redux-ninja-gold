@@ -32,10 +32,14 @@ class Container extends React.Component {
 
   randomlyGenerateGold = (min, max, type) => {
     const goldGenerated = Math.floor(Math.random() * (max - min + 1)) + min
+    const actionType = type
+
+    console.log("actionType", actionType)
 
     axios
       .put("http://localhost:4000/api/results", {
-        goldEarned: goldGenerated
+        goldEarned: goldGenerated,
+        actionType: actionType
       })
       .then((serverResultsPutResponse) => {
         console.log("TEST_serverResultsPutResponse", serverResultsPutResponse.data)

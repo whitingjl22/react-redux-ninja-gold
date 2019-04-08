@@ -39,12 +39,21 @@ app.put("/api/results", (request, response) => {
       // return response.json(mockResultsGetResponse.data)
       axios
         .put("http://5c992ab94236560014393239.mockapi.io/results/1", {
-          cumulativeGoldCount: result.cumulativeGoldCount + 100,
-          resultsList: result.resultsList.push({ id: 234, type: "", goldGenerated: 4 })
+          cumulativeGoldCount: result.cumulativeGoldCount + request.body.goldEarned,
+          resultsList: [
+            ...result.resultsList,
+            {
+              id: parseInt(result.resultsList[result.resultsList.length - 1].id) + 1,
+              type: request.body.actionType,
+              goldGenerated: request.body.goldEarned
+            }
+          ]
         })
-        .then((mockResultsPutResponse) => {})
+        .then((mockResultsPutResponse) => {
+          console.log("Completed API to MockAPI to Update Record")
+        })
+        .catch((err) => console.log(err))
     })
-
     .catch((error) => {
       console.log(error)
     })
